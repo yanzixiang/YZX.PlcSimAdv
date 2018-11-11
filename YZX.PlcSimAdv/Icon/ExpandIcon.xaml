@@ -1,0 +1,61 @@
+<UserControl x:Class="PlcSim.Compact.ExpandIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             Width="16">
+  <FrameworkElement.Resources>
+    <system:Double x:Key="ArrowThickness">1</system:Double>
+  </FrameworkElement.Resources>
+  <Grid x:Name="LayoutRoot" Background="Transparent" ClipToBounds="true" RenderTransformOrigin="0.5,0.5"
+        Height="24" Width="16">
+    <FrameworkElement.Resources>
+      <system:Double x:Key="ArrowSize">12</system:Double>
+      <system:Double x:Key="ArrowThickness">2</system:Double>
+    </FrameworkElement.Resources>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" RenderTransformOrigin="0.5,0.5"
+               Margin="8,7,6,7">
+      <UIElement.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform/>
+          <SkewTransform/>
+          <RotateTransform Angle="-135"/>
+          <TranslateTransform X="3" Y="3"/>
+        </TransformGroup>
+      </UIElement.RenderTransform>
+    </Rectangle>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" RenderTransformOrigin="0.5,0.5"
+               Margin="14,7,0,7">
+      <UIElement.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform/>
+          <SkewTransform/>
+          <RotateTransform Angle="-45"/>
+          <TranslateTransform X="-3" Y="-3"/>
+        </TransformGroup>
+      </UIElement.RenderTransform>
+    </Rectangle>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" RenderTransformOrigin="0.5,0.5"
+               Margin="1,7,13,7">
+      <UIElement.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform/>
+          <SkewTransform/>
+          <RotateTransform Angle="-135"/>
+          <TranslateTransform X="3" Y="3"/>
+        </TransformGroup>
+      </UIElement.RenderTransform>
+    </Rectangle>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" RenderTransformOrigin="0.5,0.5" Margin="7">
+      <UIElement.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform/>
+          <SkewTransform/>
+          <RotateTransform Angle="-45"/>
+          <TranslateTransform X="-3" Y="-3"/>
+        </TransformGroup>
+      </UIElement.RenderTransform>
+    </Rectangle>
+  </Grid>
+</UserControl>

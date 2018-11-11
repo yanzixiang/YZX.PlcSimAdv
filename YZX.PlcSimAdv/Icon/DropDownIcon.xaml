@@ -1,0 +1,43 @@
+<UserControl x:Class="PlcSim.Compact.DropDownIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             Width="16">
+  <FrameworkElement.Resources>
+    <system:Double x:Key="ArrowThickness">1</system:Double>
+  </FrameworkElement.Resources>
+  <Grid x:Name="LayoutRoot" Background="Transparent" ClipToBounds="true" RenderTransformOrigin="0.5,0.5"
+        Height="24" Width="16">
+    <FrameworkElement.Resources>
+      <system:Double x:Key="ArrowSize">12</system:Double>
+      <system:Double x:Key="ArrowThickness">2</system:Double>
+    </FrameworkElement.Resources>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" HorizontalAlignment="Center" Margin="7,0,7,6"/>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" RenderTransformOrigin="0.5,0.5"
+               Margin="4,10,10,4">
+      <UIElement.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform/>
+          <SkewTransform/>
+          <RotateTransform Angle="-45"/>
+          <TranslateTransform/>
+        </TransformGroup>
+      </UIElement.RenderTransform>
+    </Rectangle>
+    <Rectangle Width="{StaticResource ArrowThickness}" Fill="White" RenderTransformOrigin="0.5,0.5"
+               Margin="10,10,4,4">
+      <UIElement.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform/>
+          <SkewTransform/>
+          <RotateTransform Angle="45"/>
+          <TranslateTransform/>
+        </TransformGroup>
+      </UIElement.RenderTransform>
+    </Rectangle>
+    <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="{StaticResource ArrowThickness}"
+               Fill="White"/>
+  </Grid>
+</UserControl>

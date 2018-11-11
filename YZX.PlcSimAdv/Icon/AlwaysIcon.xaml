@@ -1,0 +1,10 @@
+<UserControl x:Class="PlcSim.Compact.AlwaysIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <FrameworkElement.Resources>
+    <ResourceDictionary/>
+  </FrameworkElement.Resources>
+  <TextBlock Text="∞" Padding="0" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="12"/>
+</UserControl>
