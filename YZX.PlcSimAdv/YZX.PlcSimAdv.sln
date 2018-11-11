@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YZX.PlcSimAdv", "YZX.PlcSimAdv.csproj", "{2BFA7941-6D05-4DEB-A407-45A95EBEB937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siemens.Simatic.PlcSim.Advanced.AdapterConfigurator", "..\Siemens.Simatic.PlcSim.Advanced.AdapterConfigurator\Siemens.Simatic.PlcSim.Advanced.AdapterConfigurator.csproj", "{472AA25C-D048-45C7-9E04-F524367C22CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexGridControl", "..\..\..\CSharp\HexGrid\HexGridControl\HexGridControl.csproj", "{942134AC-6EA2-4500-8F22-0F739B70A05F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HexGrid", "HexGrid", "{9EC2FFEB-D30E-45A9-9569-F7B3FABD554B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexGridDemo", "..\..\..\CSharp\HexGrid\HexGridDemo\HexGridDemo.csproj", "{B04561D8-B734-4956-8779-3AA6A1479B34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexGridHelpers", "..\..\..\CSharp\HexGrid\HexGridHelpers\HexGridHelpers.csproj", "{E91ECA7C-4DEB-4A44-B695-FC5B9498A677}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HandyControl", "HandyControl", "{3D37E46E-D78F-43C7-BC41-97E89073A4B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyControl", "..\..\..\CSharp\HandyControl\HandyControl\HandyControl.csproj", "{DC966E3D-BCFF-4652-98CF-070E5494749A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyControlDemo", "..\..\..\CSharp\HandyControl\HandyControlDemo\HandyControlDemo.csproj", "{9A7B52E6-94BB-4E7E-BB6A-7CF6761B79A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BFA7941-6D05-4DEB-A407-45A95EBEB937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BFA7941-6D05-4DEB-A407-45A95EBEB937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BFA7941-6D05-4DEB-A407-45A95EBEB937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BFA7941-6D05-4DEB-A407-45A95EBEB937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472AA25C-D048-45C7-9E04-F524367C22CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472AA25C-D048-45C7-9E04-F524367C22CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472AA25C-D048-45C7-9E04-F524367C22CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472AA25C-D048-45C7-9E04-F524367C22CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942134AC-6EA2-4500-8F22-0F739B70A05F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942134AC-6EA2-4500-8F22-0F739B70A05F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942134AC-6EA2-4500-8F22-0F739B70A05F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942134AC-6EA2-4500-8F22-0F739B70A05F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04561D8-B734-4956-8779-3AA6A1479B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04561D8-B734-4956-8779-3AA6A1479B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04561D8-B734-4956-8779-3AA6A1479B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04561D8-B734-4956-8779-3AA6A1479B34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E91ECA7C-4DEB-4A44-B695-FC5B9498A677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E91ECA7C-4DEB-4A44-B695-FC5B9498A677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E91ECA7C-4DEB-4A44-B695-FC5B9498A677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E91ECA7C-4DEB-4A44-B695-FC5B9498A677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7B52E6-94BB-4E7E-BB6A-7CF6761B79A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7B52E6-94BB-4E7E-BB6A-7CF6761B79A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7B52E6-94BB-4E7E-BB6A-7CF6761B79A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7B52E6-94BB-4E7E-BB6A-7CF6761B79A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{942134AC-6EA2-4500-8F22-0F739B70A05F} = {9EC2FFEB-D30E-45A9-9569-F7B3FABD554B}
+		{B04561D8-B734-4956-8779-3AA6A1479B34} = {9EC2FFEB-D30E-45A9-9569-F7B3FABD554B}
+		{E91ECA7C-4DEB-4A44-B695-FC5B9498A677} = {9EC2FFEB-D30E-45A9-9569-F7B3FABD554B}
+		{DC966E3D-BCFF-4652-98CF-070E5494749A} = {3D37E46E-D78F-43C7-BC41-97E89073A4B1}
+		{9A7B52E6-94BB-4E7E-BB6A-7CF6761B79A7} = {3D37E46E-D78F-43C7-BC41-97E89073A4B1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {675E267A-D5C0-4BEA-983A-E3AFC42B6194}
+	EndGlobalSection
+EndGlobal
