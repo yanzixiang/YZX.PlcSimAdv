@@ -1,12 +1,40 @@
-﻿<Window x:Class="YZX.PlcSimAdv.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:YZX.PlcSimAdv"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+﻿<HandyControl:WindowBorderless 
+  x:Class="YZX.PlcSimAdv.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:HandyControl="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+  xmlns:WpfPageTransitions="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
+  xmlns:PlcSimView="clr-namespace:PlcSim.Compact.View"
+  xmlns:YZXView="clr-namespace:YZX.PlcSimAdv.View"
+  mc:Ignorable="d"
+  BorderThickness="1"
+  BorderBrush="#262e2f"
+  NonClientAreaBackground="#262e2f"
+  OtherButtonHoverBrush="#888580"
+  Style="{StaticResource CustomWindowStyle}"
+  WindowState="Maximized"
+  Title="MainWindow" 
+  ResizeMode="CanResizeWithGrip"
+  Name="MyWindow"
+  DataContext="{Binding Main,Source={StaticResource Locator}}"
+  d:DesignHeight="800" 
+  d:DesignWidth="1400">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="310" />
+      <ColumnDefinition MinWidth="300" />
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0">
+      <YZXView:CPUControl></YZXView:CPUControl>
     </Grid>
-</Window>
+    <Grid Grid.Column="1">
+      <WpfPageTransitions:PageTransition Name="PageTransitionControl" Margin="25" TransitionType="SlideAndFade" />
+      <HandyControl:ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" IsEnableInertia="True" IsPenetrating="True">
+        <StackPanel HandyControl:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>
+
+      </HandyControl:ScrollViewer>
+    </Grid>
+  </Grid>
+</HandyControl:WindowBorderless>

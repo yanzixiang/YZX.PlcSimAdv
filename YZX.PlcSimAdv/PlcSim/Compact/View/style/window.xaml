@@ -1,0 +1,105 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:viewModel="clr-namespace:PlcSim.Compact.ViewModel"
+                    xmlns:view="clr-namespace:PlcSim.Compact.View">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="Colors.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+  <system:Double x:Key="TitleBarHeight">31</system:Double>
+  <Style x:Key="ToolBarButtonStyle" TargetType="{x:Type Button}"
+         BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+    <Setter Property="Control.Background" Value="Transparent"/>
+    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="true"/>
+    <Setter Property="Control.BorderBrush" Value="Transparent"/>
+    <Setter Property="Control.BorderThickness" Value="1"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border Background="{TemplateBinding Control.Background}" Padding="2"
+                  BorderThickness="{TemplateBinding Control.BorderThickness}"
+                  BorderBrush="{TemplateBinding Control.BorderBrush}">
+            <ContentPresenter/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="true">
+        <Setter Property="Control.Background" Value="#E7E7E7"/>
+        <Setter Property="Control.BorderBrush" Value="#B2B2B2"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="ToolBarToggleButtonStyle" TargetType="{x:Type ToggleButton}"
+         BasedOn="{StaticResource {x:Static ToolBar.ToggleButtonStyleKey}}">
+    <Setter Property="Control.Background" Value="Transparent"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border Background="{TemplateBinding Control.Background}" Padding="0" BorderThickness="1"
+                  BorderBrush="Black">
+            <ContentPresenter/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="ToggleButton.IsChecked" Value="True">
+        <Setter Property="Control.Background" Value="{StaticResource LogoBackgroundBrush}"/>
+        <Setter Property="Control.BorderBrush" Value="#AAFFFFFF"/>
+      </Trigger>
+      <Trigger Property="UIElement.IsMouseOver" Value="true">
+        <Setter Property="Control.Background" Value="#e1e1e1"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="WindowMaximizedBorderStyle" TargetType="{x:Type Border}">
+    <Setter Property="Border.BorderThickness" Value="0"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=WindowState}"
+                   Value="Maximized">
+        <Setter Property="Border.BorderThickness" Value="8"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="TitleBarCaptionButtonStyle" TargetType="{x:Type Button}"
+         BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+    <Setter Property="Control.Background" Value="Transparent"/>
+    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="true"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border Background="{TemplateBinding Control.Background}" Padding="1">
+            <ContentPresenter/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="true">
+        <Setter Property="Control.Background" Value="#e1e1e1"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="MessageBoxDialogCaptionButtonStyle" TargetType="{x:Type Button}"
+         BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+    <Setter Property="Control.Background" Value="Transparent"/>
+    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="true"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border Background="{TemplateBinding Control.Background}" Padding="0">
+            <ContentPresenter/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="true">
+        <Setter Property="Control.Background" Value="#e1e1e1"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <system:Double x:Key="WindowCaptionHeight">23</system:Double>
+</ResourceDictionary>

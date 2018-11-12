@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="LogoBackground">#0098A1</Color>
+  <SolidColorBrush x:Key="LogoBackgroundBrush" Color="{StaticResource LogoBackground}"/>
+  <Color x:Key="BackgroundColor">#536270</Color>
+  <SolidColorBrush x:Key="BackgroundColorBrush" Color="{StaticResource BackgroundColor}"/>
+  <Color x:Key="PlcSimButtonDepressedColor">#44525D</Color>
+  <SolidColorBrush x:Key="PlcSimButtonDepressedSolidBrush" Color="{StaticResource PlcSimButtonDepressedColor}"/>
+  <Color x:Key="BorderColor">#647D8D</Color>
+  <SolidColorBrush x:Key="BorderColorBrush" Color="{StaticResource BorderColor}"/>
+  <Color x:Key="InfoAreaBgColor">#CCCCCC</Color>
+  <SolidColorBrush x:Key="InfoAreaBgBrush" Color="{StaticResource InfoAreaBgColor}"/>
+</ResourceDictionary>

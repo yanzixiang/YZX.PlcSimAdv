@@ -57,7 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+      <HintPath>packages\Unity.5.8.11\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -86,11 +86,26 @@
     <Reference Include="Microsoft.Dynamic, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Dynamic.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting.Metadata, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nucs.JsonSettings, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\nucs.JsonSettings.1.0.7\lib\net47\nucs.JsonSettings.dll</HintPath>
     </Reference>
     <Reference Include="Siemens.Simatic.PlcSim.Advanced.ConfigureAdapters">
       <HintPath>..\LIB\Siemens.Simatic.PlcSim.Advanced.ConfigureAdapters.dll</HintPath>
@@ -99,7 +114,13 @@
       <HintPath>..\LIB\Siemens.Simatic.Simulation.Runtime.Api.x64.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -121,6 +142,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PlcSim\Compact\View\primarycpupanel.xaml.cs" />
+    <Compile Include="PlcSim\Compact\ViewModel\LedFlasher.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="YZX\IPTextBox.xaml.cs">
+      <DependentUpon>IPTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YZX\PlcSimAdv\ViewModel\CPUControlViewModel.cs" />
+    <Compile Include="YZX\PlcSimAdv\ViewModel\UtilityFunctions.cs" />
+    <Compile Include="YZX\PlcSimAdv\View\CPUControl.xaml.cs">
+      <DependentUpon>CPUControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YZX\PlcSimAdv\View\HexGridMainMenu.xaml.cs">
+      <DependentUpon>HexGridMainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YZX\PlcSimAdv\ViewModel\MainViewModel.cs" />
+    <Compile Include="YZX\PlcSimAdv\ViewModel\ViewModelLocator.cs" />
+    <Compile Include="YZX\PlcSimAdv\View\LabeledLed.xaml.cs">
+      <DependentUpon>LabeledLed.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,33 +177,91 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Icon\AlwaysIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\DebugIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\DropDownIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\ExpandIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\FullIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\NewIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\OpenIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Icon\TopmostIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PlcSim\Compact\busylights.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PlcSim\Compact\View\labeledled.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PlcSim\Compact\View\primarycpupanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YZX\IPTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YZX\PlcSimAdv\View\LabeledLed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="PlcSim\Compact\View\style\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="PlcSim\Compact\View\style\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="PlcSim\Compact\View\style\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="PlcSim\Compact\View\style\window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Page Include="YZX\PlcSimAdv\View\CPUControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YZX\PlcSimAdv\View\HexGridMainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Lib\ensurepip\_bundled\pip-8.1.1-py2.py3-none-any.whl" />
     <None Include="Lib\ensurepip\_bundled\setuptools-20.10.1-py2.py3-none-any.whl" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -184,6 +286,10 @@
     <ProjectReference Include="..\..\..\CSharp\HexGrid\HexGridControl\HexGridControl.csproj">
       <Project>{942134ac-6ea2-4500-8f22-0f739b70a05f}</Project>
       <Name>HexGridControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CSharp\WpfPageTransition\WpfPageTransitions\WpfPageTransitions.csproj">
+      <Project>{22a46d61-1d40-43a9-802c-b9d43dadd9ec}</Project>
+      <Name>WpfPageTransitions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -597,6 +703,29 @@
     <Content Include="Lib\shutil.py" />
     <Content Include="Lib\SimpleHTTPServer.py" />
     <Content Include="Lib\SimpleXMLRPCServer.py" />
+    <Resource Include="YZX\Images\ironpython.png" />
+    <Resource Include="YZX\Images\ReactiveX.png" />
+    <Resource Include="YZX\Images\PLCSIMAdvanced.png" />
+    <Resource Include="YZX\Images\standby_power-on.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\titlebartileinactive.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\titlebartile.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\standby_power-on.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\siemenslogo.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\iconplcsimpe.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_plcsim_tbfullmode.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_plcsim_alwaysontopon.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_plcsim_alwaysontopoff.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_wmminimizedark_11.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_wmcompactmode.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_wmclosedark_11.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_infosuccess.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_infoinformation.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_infoerror.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_infodecisioncritical.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\ico_pe_infodecision.ico" />
+    <Resource Include="PlcSim\Compact\View\style\resources\dialogtitlebartile.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\dialogtitlebarclose.png" />
+    <Resource Include="PlcSim\Compact\View\style\resources\arp.ico" />
     <Resource Include="Lib\site-packages\README.txt" />
     <Content Include="Lib\site.py" />
     <Content Include="Lib\smtpd.py" />
@@ -703,6 +832,21 @@
     <Content Include="Lib\_weakrefset.py" />
     <Content Include="Lib\__future__.py" />
     <Content Include="Lib\__phello__.foo.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PlcSim\Compact\Cpu\" />
+    <Folder Include="YZX\PlcSimAdv\Service\" />
+    <Folder Include="YZX\PlcSimAdv\UserControl\Controls\" />
+    <Folder Include="YZX\PlcSimAdv\UserControl\Main\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

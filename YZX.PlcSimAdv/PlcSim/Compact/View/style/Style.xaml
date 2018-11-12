@@ -1,0 +1,62 @@
+<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:compact="clr-namespace:PlcSim.Compact"
+  >
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="Window.xaml"/>
+    <ResourceDictionary Source="Button.xaml"/>
+    <ResourceDictionary Source="Colors.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+  <BooleanToVisibilityConverter x:Key="BoolVisConverter"/>
+  <Style TargetType="{x:Type ToolTip}">
+    <Setter Property="Control.Background" Value="Gray"/>
+    <Setter Property="Control.BorderBrush" Value="White"/>
+    <Setter Property="Control.Foreground" Value="White"/>
+  </Style>
+  <Style TargetType="{x:Type ComboBox}">
+    <Setter Property="Control.Background" Value="Gray"/>
+    <Setter Property="ComboBox.Text" Value="White"/>
+  </Style>
+  <Style TargetType="{x:Type ContextMenu}"/>
+  <ControlTemplate x:Key="TopmostIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:TopmostIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="FullIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:FullIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="DebugIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:DebugIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="NewIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:NewIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="OpenIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:OpenIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="DropDownIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:DropDownIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="AlwaysIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:AlwaysIcon/>
+    </Viewbox>
+  </ControlTemplate>
+  <ControlTemplate x:Key="ExpandIcon">
+    <Viewbox Stretch="Uniform">
+      <compact:ExpandIcon/>
+    </Viewbox>
+  </ControlTemplate>
+</ResourceDictionary>

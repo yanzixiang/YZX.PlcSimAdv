@@ -1,0 +1,91 @@
+﻿<UserControl 
+  x:Class="YZX.PlcSimAdv.View.CPUControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+  xmlns:YZXView="clr-namespace:YZX.PlcSimAdv.View"
+  xmlns:IPtextbox="clr-namespace:IPtextbox"
+  mc:Ignorable="d" 
+  d:DesignHeight="450" 
+  d:DesignWidth="310" 
+  Background="{StaticResource BackgroundColorBrush}"
+  DataContext="{Binding CPU,Source={StaticResource Locator}}"
+  >
+  <Grid Width="300" Margin="10,0,0,0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="100" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Margin="0,5,0,0">
+        <StackPanel Orientation="Horizontal">
+          <WrapPanel Height="Auto" ItemHeight="Auto" Orientation="Vertical" Margin="0,10,0,0">
+            <Border x:Name="RunLed" Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding Color}"/>
+            <TextBlock FontSize="24" FontFamily="Siemens TIA Portal Basic" VerticalAlignment="Center" Padding="0"
+               Margin="8,0,0,0" Text="Run"/>
+          </WrapPanel>
+          <WrapPanel Height="Auto" ItemHeight="Auto" Orientation="Vertical" Margin="10,10,0,0">
+            <Border Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding Color}"/>
+            <TextBlock FontSize="24" FontFamily="Siemens TIA Portal Basic" VerticalAlignment="Center" Padding="0"
+               Margin="8,0,0,0" Text="Error"/>
+          </WrapPanel>
+          <WrapPanel Height="Auto" ItemHeight="Auto" Orientation="Vertical" Margin="10,10,0,0">
+            <Border Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding Color}"/>
+            <TextBlock FontSize="24" FontFamily="Siemens TIA Portal Basic" VerticalAlignment="Center" Padding="0"
+               Margin="8,0,0,0" Text="MRES"/>
+          </WrapPanel>
+        </StackPanel>
+        <Image Source="/YZX/images/PLCSIMAdvanced.png" Height="175"></Image>
+
+        
+      </StackPanel>
+
+      
+
+
+      <StackPanel Grid.Column="1" Orientation="Vertical" Width="90">
+
+        <ToggleButton x:Name="PowerButton" Focusable="false" Style="{StaticResource 3dToggleButtonStyle}"
+                        Visibility="Visible" BorderThickness="0" Height="90" Width="90" Margin="0,5,0,5"
+                        IsChecked="{Binding Path=PowerButtonIsDepressed, Mode=TwoWay}"
+                        ToolTip="{Binding Path=TextResources.PowerPlcText}" Command="{Binding PowerPlcCommand}">
+          <Image RenderSize="80,80" Stretch="None" SnapsToDevicePixels="true"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased"
+                   Source="{Binding PowerButtonImageSource}"/>
+        </ToggleButton>
+
+        <ToggleButton x:Name="RunButton" Focusable="false" Style="{StaticResource 3dToggleButtonStyle}" Content="RUN"
+                        FontFamily="Siemens TIA Portal Basic" Margin="0,0,0,5" Height="45"
+                        IsChecked="{Binding RunButtonIsDepressed, Mode=TwoWay}" IsEnabled="{Binding HasConfiguredCpu}"
+                        Command="{Binding RunCommand}"/>
+        <ToggleButton x:Name="StopButton" Focusable="false" Style="{StaticResource 3dToggleButtonStyle}" Content="STOP"
+                        FontFamily="Siemens TIA Portal Basic" Margin="0,0,0,5" Height="45"
+                        IsChecked="{Binding StopButtonIsDepressed, Mode=TwoWay}" IsEnabled="{Binding HasConfiguredCpu}"
+                        Command="{Binding StopCommand}"/>
+        <ToggleButton x:Name="MresButton" Focusable="false" Style="{StaticResource 3dToggleButtonStyle}" Content="MRES"
+                        FontFamily="Siemens TIA Portal Basic" Margin="0,0,0,5" Height="45"
+                        IsChecked="{Binding MresButtonIsDepressed, Mode=TwoWay}" IsEnabled="{Binding HasConfiguredCpu}"
+                        Command="{Binding MresCommand}"/>
+      </StackPanel>
+    </Grid>
+    <StackPanel Grid.Row="1">
+        <IPtextbox:IPTextBox Width="295" Height="40"></IPtextbox:IPTextBox>
+      
+      
+      <Image Source="/YZX/images/ironpython.png"></Image>
+      <Image Source="/YZX/images/ReactiveX.png"></Image>
+      <Viewbox>
+        <TextBlock Foreground="White" 
+                   Background="{StaticResource LogoBackgroundBrush}" 
+                   FontWeight="Bold"
+               Padding="2,0">SIEMENS</TextBlock>
+      </Viewbox>
+    </StackPanel>
+  </Grid>
+</UserControl>

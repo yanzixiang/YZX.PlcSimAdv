@@ -1,9 +1,164 @@
-﻿<Application x:Class="YZX.PlcSimAdv.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:YZX.PlcSimAdv"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
+﻿<Application 
+  x:Class="YZX.PlcSimAdv.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  xmlns:viewModel="clr-namespace:YZX.PlcSimAdv.ViewModel"
+  d1P1:Ignorable="d" 
+  StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+
+        <ResourceDictionary>
+          <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+        </ResourceDictionary>
+
+      </ResourceDictionary.MergedDictionaries>
+
+      <Color x:Key="LogoBackground">#0098A1</Color>
+      <SolidColorBrush x:Key="LogoBackgroundBrush" Color="{StaticResource LogoBackground}"/>
+      <Color x:Key="BackgroundColor">#536270</Color>
+      <SolidColorBrush x:Key="BackgroundColorBrush" Color="{StaticResource BackgroundColor}"/>
+      <Color x:Key="PlcSimButtonDepressedColor">#44525D</Color>
+      <SolidColorBrush x:Key="PlcSimButtonDepressedSolidBrush" Color="{StaticResource PlcSimButtonDepressedColor}"/>
+      <Color x:Key="BorderColor">#647D8D</Color>
+      <SolidColorBrush x:Key="BorderColorBrush" Color="{StaticResource BorderColor}"/>
+      <Color x:Key="InfoAreaBgColor">#CCCCCC</Color>
+      <SolidColorBrush x:Key="InfoAreaBgBrush" Color="{StaticResource InfoAreaBgColor}"/>
+
+      <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate>
+              <Rectangle Margin="2" SnapsToDevicePixels="true"
+                     Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1"
+                     StrokeDashArray="1 2"/>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+
+      <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+
+      <Style x:Key="3dToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Control.Background" Value="#FF6D8797"/>
+        <Setter Property="Control.BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Control.Foreground" Value="White"/>
+        <Setter Property="Control.BorderThickness" Value="1"/>
+        <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Control.Padding" Value="2,3,3,2"/>
+        <!--<Setter Property="style:MouseDownHelper.IsEnabled" Value="true"/>-->
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ToggleButton}">
+              <Grid x:Name="mainGrid" Margin="0,0,0,0">
+                <VisualStateManager.VisualStateGroups>
+                  <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal"/>
+                    <VisualState x:Name="MouseOver"/>
+                    <VisualState x:Name="MouseDown"/>
+                    <VisualState x:Name="Disabled"/>
+                  </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Grid x:Name="uncheckedState" Background="{StaticResource BackgroundColorBrush}"
+                  SnapsToDevicePixels="true">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="3"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="3"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3"/>
+                  </Grid.ColumnDefinitions>
+                  <Path Data="M 0,0 L 0,3 3,3 " Grid.Column="0" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="0" Grid.Row="1" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,0 0,3 " Grid.Column="0" Grid.Row="2" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 3,0 L 3,3 0,0 " Grid.Column="0" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="1" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,0 0,3 " Grid.Column="2" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 3,0 L 3,3 0,3 " Grid.Column="2" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="2" Grid.Row="1" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,0 3,3 " Grid.Column="2" Grid.Row="2" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 3,0 L 3,3 0,3 " Grid.Column="0" Grid.Row="2" Fill="#35424A" Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="1" Grid.Row="2" Fill="#35424A" Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,3 0,3 " Grid.Column="2" Grid.Row="2" Fill="#35424A" Stretch="None"/>
+                </Grid>
+                <Grid x:Name="checkedState" Visibility="Collapsed" Background="#44525D" SnapsToDevicePixels="true">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="3"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="3"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3"/>
+                  </Grid.ColumnDefinitions>
+                  <Path Data="M 0,0 L 0,3 3,3 " Grid.Column="0" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="0" Grid.Row="1" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,0 0,3 " Grid.Column="0" Grid.Row="2" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 3,0 L 3,3 0,0 " Grid.Column="0" Grid.Row="0" Fill="#2C373D" Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="1" Grid.Row="0" Fill="#2C373D" Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,0 0,3 " Grid.Column="2" Grid.Row="0" Fill="#2C373D" Stretch="None"/>
+                  <Path Data="M 3,0 L 3,3 0,3 " Grid.Column="2" Grid.Row="0" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="2" Grid.Row="1" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,0 3,3 " Grid.Column="2" Grid.Row="2" Fill="{StaticResource BorderColorBrush}"
+                    Stretch="None"/>
+                  <Path Data="M 3,0 L 3,3 0,3 " Grid.Column="0" Grid.Row="2" Fill="#99AFC2" Stretch="None"/>
+                  <Path Data="M 0,0 L 0,1 1,1 1,0 " Grid.Column="1" Grid.Row="2" Fill="#99AFC2" Stretch="Fill"/>
+                  <Path Data="M 0,0 L 3,3 0,3 " Grid.Column="2" Grid.Row="2" Fill="#99AFC2" Stretch="None"/>
+                </Grid>
+                <ContentPresenter x:Name="contentPresenter" Focusable="false"
+                              HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" Margin="0,0,0,0"
+                              RecognizesAccessKey="true" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="UIElement.IsMouseOver" Value="true">
+                  <Setter TargetName="uncheckedState" Property="Panel.Background" Value="LightSlateGray"/>
+                  <Setter TargetName="checkedState" Property="Panel.Background" Value="LightSlateGray"/>
+                </Trigger>
+                <!--<Trigger Property="style:MouseDownHelper.IsMouseLeftButtonDown" Value="true">
+              <Setter TargetName="uncheckedState" Property="Panel.Background" Value="LightSlateGray"/>
+              <Setter TargetName="checkedState" Property="Panel.Background" Value="LightSlateGray"/>
+            </Trigger>-->
+                <Trigger Property="UIElement.IsEnabled" Value="false">
+                  <Setter TargetName="uncheckedState" Property="Panel.Background" Value="LightSlateGray"/>
+                  <Setter TargetName="checkedState" Property="Panel.Background" Value="LightSlateGray"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                  <Setter TargetName="checkedState" Property="UIElement.Visibility" Value="Visible"/>
+                  <Setter TargetName="uncheckedState" Property="UIElement.Visibility" Value="Collapsed"/>
+                  <Setter TargetName="mainGrid" Property="FrameworkElement.Margin" Value="0,0,0,0"/>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>
