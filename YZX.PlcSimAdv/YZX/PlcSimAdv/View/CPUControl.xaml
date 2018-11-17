@@ -8,7 +8,7 @@
   xmlns:YZXView="clr-namespace:YZX.PlcSimAdv.View"
   xmlns:IPtextbox="clr-namespace:IPtextbox"
   mc:Ignorable="d" 
-  d:DesignHeight="450" 
+  d:DesignHeight="1080" 
   d:DesignWidth="310" 
   Background="{StaticResource BackgroundColorBrush}"
   DataContext="{Binding CPU,Source={StaticResource Locator}}"
@@ -26,19 +26,19 @@
       <StackPanel Margin="0,5,0,0">
         <StackPanel Orientation="Horizontal">
           <WrapPanel Height="Auto" ItemHeight="Auto" Orientation="Vertical" Margin="0,10,0,0">
-            <Border x:Name="RunLed" Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding Color}"/>
+            <Border x:Name="RunLed" Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding RunLedColor}"/>
             <TextBlock FontSize="24" FontFamily="Siemens TIA Portal Basic" VerticalAlignment="Center" Padding="0"
                Margin="8,0,0,0" Text="Run"/>
           </WrapPanel>
           <WrapPanel Height="Auto" ItemHeight="Auto" Orientation="Vertical" Margin="10,10,0,0">
-            <Border Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding Color}"/>
+            <Border Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding ErrorLedColor}"/>
             <TextBlock FontSize="24" FontFamily="Siemens TIA Portal Basic" VerticalAlignment="Center" Padding="0"
                Margin="8,0,0,0" Text="Error"/>
           </WrapPanel>
           <WrapPanel Height="Auto" ItemHeight="Auto" Orientation="Vertical" Margin="10,10,0,0">
-            <Border Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding Color}"/>
+            <Border Width="24" Height="24" BorderBrush="Gray" BorderThickness="1" Background="{Binding MaintLedColor}"/>
             <TextBlock FontSize="24" FontFamily="Siemens TIA Portal Basic" VerticalAlignment="Center" Padding="0"
-               Margin="8,0,0,0" Text="MRES"/>
+               Margin="8,0,0,0" Text="Maint"/>
           </WrapPanel>
         </StackPanel>
         <Image Source="/YZX/images/PLCSIMAdvanced.png" Height="175"></Image>

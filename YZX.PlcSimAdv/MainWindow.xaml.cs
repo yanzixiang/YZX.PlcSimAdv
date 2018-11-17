@@ -8,6 +8,7 @@ using Siemens.Simatic.Simulation.Runtime;
 using Siemens.Simatic.PlcSim.Advanced;
 
 using HandyControl.Controls;
+using YZX.PlcSimAdv.View;
 
 namespace YZX.PlcSimAdv
 {
@@ -17,6 +18,14 @@ namespace YZX.PlcSimAdv
     {
       InitializeComponent();
 
+      Loaded += MainWindow_Loaded;
+
+    }
+
+    private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+      IronPythonControl c = new IronPythonControl();
+      PageTransitionControl.ShowPage(c);
     }
 
     public readonly string EventLogName = @"YZX.PLCSimAdv";

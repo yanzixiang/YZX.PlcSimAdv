@@ -30,7 +30,9 @@
       <YZXView:CPUControl></YZXView:CPUControl>
     </Grid>
     <Grid Grid.Column="1">
-      <WpfPageTransitions:PageTransition Name="PageTransitionControl" Margin="25" TransitionType="SlideAndFade" />
+      <WpfPageTransitions:PageTransition 
+        Name="PageTransitionControl" 
+        TransitionType="SlideAndFade" />
       <HandyControl:ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" IsEnableInertia="True" IsPenetrating="True">
         <StackPanel HandyControl:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>
 

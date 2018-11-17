@@ -14,6 +14,7 @@ namespace YZX.PlcSimAdv.ViewModel
 
       SimpleIoc.Default.Register<CPUControlViewModel>();
       SimpleIoc.Default.Register<MainViewModel>();
+
     }
 
     public static ViewModelLocator Instance => new Lazy<ViewModelLocator>(() =>

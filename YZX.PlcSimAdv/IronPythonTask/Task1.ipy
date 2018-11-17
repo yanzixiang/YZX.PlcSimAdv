@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+try:
+	import clr
+	ironpythonhome = "C:\\Program Files (x86)\\IronPython 2.7\\"
+	clr.AddReferenceToFileAndPath(ironpythonhome + "IronPython.dll")
+	clr.AddReferenceToFileAndPath(ironpythonhome + "IronPython.Modules.dll")
+
+except Exception:
+	print Exception
+
+def RunOneTime():
+  print "RunOneTime Task1"
+
+def Init():
+	print "Init Task1"

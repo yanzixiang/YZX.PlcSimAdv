@@ -1,0 +1,42 @@
+﻿<UserControl 
+  x:Class="YZX.PlcSimAdv.View.IronPythonControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:HandyControl="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+  xmlns:IPCC="clr-namespace:PythonConsoleControl;assembly=IronPythonConsoleForm"
+  xmlns:YZXLogicEngine="clr-namespace:YZXLogicEngine"
+  xmlns:YZXView="clr-namespace:YZX.PlcSimAdv.View"
+  mc:Ignorable="d" 
+  d:DesignHeight="1080" 
+  d:DesignWidth="1080" 
+  Background="{StaticResource BackgroundColorBrush}"
+  DataContext="{Binding CPU,Source={StaticResource Locator}}"
+  >
+  <Grid Margin="0,0,0,0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+      <HandyControl:TabControl
+        x:Name="MainTab"
+        Grid.Row="1"
+        >
+        <HandyControl:TabItem Header="控制台">
+          <HandyControl:ScrollViewer>
+          <IPCC:IronPythonConsoleControl 
+            x:Name="Console"
+            VerticalAlignment="Stretch"
+            />
+          </HandyControl:ScrollViewer>
+        </HandyControl:TabItem>
+
+      <HandyControl:TabItem Header="控制台">
+        <HandyControl:ScrollViewer>
+          <YZXLogicEngine:IronPythonDebuger />
+        </HandyControl:ScrollViewer>
+      </HandyControl:TabItem>
+    </HandyControl:TabControl>
+  </Grid>
+</UserControl>

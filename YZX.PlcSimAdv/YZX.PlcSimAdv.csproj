@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>\\192.168.213.13\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -68,6 +68,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
     <Reference Include="IronPython, Version=2.7.9.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\IronPython.2.7.9\lib\net45\IronPython.dll</HintPath>
     </Reference>
@@ -86,41 +89,64 @@
     <Reference Include="Microsoft.Dynamic, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Dynamic.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Scripting.Metadata, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nucs.JsonSettings, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\nucs.JsonSettings.1.0.7\lib\net47\nucs.JsonSettings.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="ReactiveUI.Events.WPF, Version=9.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReactiveUI.Events.WPF.9.2.2\lib\net461\ReactiveUI.Events.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="Siemens.Simatic.PlcSim.Advanced.ConfigureAdapters">
       <HintPath>..\LIB\Siemens.Simatic.PlcSim.Advanced.ConfigureAdapters.dll</HintPath>
     </Reference>
-    <Reference Include="Siemens.Simatic.Simulation.Runtime.Api.x64">
-      <HintPath>..\LIB\Siemens.Simatic.Simulation.Runtime.Api.x64.dll</HintPath>
+    <Reference Include="Siemens.Simatic.Simulation.Runtime.Api.x64, Version=2.0.1.2704, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Common Files\Siemens\PLCSIMADV\API\2.1\Siemens.Simatic.Simulation.Runtime.Api.x64.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.4.5.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Reactive, Version=4.1.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.4.1.2\lib\net46\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.4.5.1\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -152,8 +178,21 @@
     <Compile Include="YZX\IPTextBox.xaml.cs">
       <DependentUpon>IPTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YZX\PlcSimAdv\Task\IPYTracebackEventArgs.cs" />
+    <Compile Include="YZX\PlcSimAdv\Task\IronPythonTask.cs" />
+    <Compile Include="YZX\PlcSimAdv\Task\IronPythonTaskMonitor.cs" />
+    <Compile Include="YZX\PlcSimAdv\Task\YZXTaskExceptionEventArgs.cs" />
+    <Compile Include="YZX\PlcSimAdv\ViewModel\CPUControlViewModel.IronPython.cs" />
+    <Compile Include="YZX\PlcSimAdv\ViewModel\CPUControlViewModel.NettoPLCSim.cs" />
     <Compile Include="YZX\PlcSimAdv\ViewModel\CPUControlViewModel.cs" />
+    <Compile Include="YZX\PlcSimAdv\ViewModel\LedFlasher.cs" />
     <Compile Include="YZX\PlcSimAdv\ViewModel\UtilityFunctions.cs" />
+    <Compile Include="YZX\PlcSimAdv\View\AboutControl.xaml.cs">
+      <DependentUpon>AboutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YZX\PlcSimAdv\View\IronPythonControl.xaml.cs">
+      <DependentUpon>IronPythonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YZX\PlcSimAdv\View\CPUControl.xaml.cs">
       <DependentUpon>CPUControl.xaml</DependentUpon>
     </Compile>
@@ -162,8 +201,8 @@
     </Compile>
     <Compile Include="YZX\PlcSimAdv\ViewModel\MainViewModel.cs" />
     <Compile Include="YZX\PlcSimAdv\ViewModel\ViewModelLocator.cs" />
-    <Compile Include="YZX\PlcSimAdv\View\LabeledLed.xaml.cs">
-      <DependentUpon>LabeledLed.xaml</DependentUpon>
+    <Compile Include="YZX\PlcSimAdv\View\IronPythonDebuger.xaml.cs">
+      <DependentUpon>IronPythonDebuger.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -225,7 +264,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="YZX\PlcSimAdv\View\LabeledLed.xaml">
+    <Page Include="YZX\PlcSimAdv\View\IronPythonDebuger.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -245,6 +284,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Page Include="YZX\PlcSimAdv\View\AboutControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YZX\PlcSimAdv\View\IronPythonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="YZX\PlcSimAdv\View\CPUControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -279,6 +326,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\sf\Nettoplcsim-S7o-v-1-2-4-0-src\IsoOnTcpServer\IsoToS7online.csproj">
+      <Project>{8e6da196-fdc8-4797-a032-c93903f9fdc5}</Project>
+      <Name>IsoToS7online</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\sf\Nettoplcsim-S7o-v-1-2-4-0-src\NetToPLCSim\NetToPLCSim.csproj">
+      <Project>{31083f11-4753-4237-9121-6eb2fa9b9aea}</Project>
+      <Name>NetToPLCSim</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\CSharp\HandyControl\HandyControl\HandyControl.csproj">
       <Project>{dc966e3d-bcff-4652-98cf-070e5494749a}</Project>
       <Name>HandyControl</Name>
@@ -291,8 +346,18 @@
       <Project>{22a46d61-1d40-43a9-802c-b9d43dadd9ec}</Project>
       <Name>WpfPageTransitions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\IronPythonConsoleForm\IronPythonConsoleForm\IronPythonConsoleForm.csproj">
+      <Project>{5b4de2a6-8357-4f45-bf54-7c3cdffb7e22}</Project>
+      <Name>IronPythonConsoleForm</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="IronPythonTask\Task2.ipy">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="IronPythonTask\Task1.ipy">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Lib\abc.py" />
     <Content Include="Lib\aifc.py" />
     <Content Include="Lib\antigravity.py" />
@@ -838,9 +903,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PlcSim\Compact\Cpu\" />
-    <Folder Include="YZX\PlcSimAdv\Service\" />
-    <Folder Include="YZX\PlcSimAdv\UserControl\Controls\" />
-    <Folder Include="YZX\PlcSimAdv\UserControl\Main\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
