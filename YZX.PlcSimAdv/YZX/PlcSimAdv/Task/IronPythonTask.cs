@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using Microsoft.Scripting.Hosting;
 
 using IronPython.Hosting;
-using IronPython.Runtime.Exceptions;
-
 using IronPython.Runtime;
-using Microsoft.Scripting.Hosting.Providers;
+using IronPython.Runtime.Exceptions;
 using IronPython.Runtime.Operations;
+
+using YZX.PlcSimAdv.ViewModel;
 
 namespace YZX.PlcSimAdv.Task
 {
@@ -38,6 +38,9 @@ namespace YZX.PlcSimAdv.Task
     public string Path { get; set; }
 
     public bool CompileSucess { get; private set; }
+
+    public int InitThreadId;
+    public int RunThreadId;
 
     /// <summary>
     /// 上次开始执行时间
@@ -72,6 +75,8 @@ namespace YZX.PlcSimAdv.Task
 
     private TracebackDelegate OnTracebackReceived(TraceBackFrame frame, string result, object payload)
     {
+      
+
       if (TracebackEvent != null)
       {
         bool NotMyCode = frame.f_code.co_filename != Path;
@@ -111,6 +116,13 @@ namespace YZX.PlcSimAdv.Task
     public event EventHandler<IPYTracebackEventArgs> TracebackEvent;
     public event EventHandler<YZXTaskExceptionEventArgs> ExceptionEvent;
 
+    public void SetVariables()
+    {
+      Scope.SetVariable("Task", this);
+      Scope.SetVariable("CPU",ViewModelLocator.Instance.CPU.Instance);
+
+    }
+
     public void Reload()
     {
       try
@@ -118,11 +130,11 @@ namespace YZX.PlcSimAdv.Task
         Engine = Python.CreateEngine();
         Scope = Engine.CreateScope();
 
+        SetVariables();
+
         scriptSource = Engine.CreateScriptSourceFromFile(Path);
         compiledCode = scriptSource.Compile();
         compiledCode.Execute(Scope);
-
-        Engine.SetTrace(OnTracebackReceived);
 
         CompileSucess = true;
       }
@@ -138,10 +150,11 @@ namespace YZX.PlcSimAdv.Task
       try
       {
         Reload();
-        
+
+        InitThreadId = Thread.CurrentThread.ManagedThreadId;
+        Engine.SetTrace(OnTracebackReceived);
+
         PythonFunction InitAction = (PythonFunction)GetVariable("Init");
-
-
         PythonCalls.Call(codeContext, InitAction);
       }
       catch (ImportException e)
@@ -151,21 +164,20 @@ namespace YZX.PlcSimAdv.Task
 
     public bool RunOneTime()
     {
-
-      if(CompileSucess != true)
+      RunThreadId = Thread.CurrentThread.ManagedThreadId;
+      if (CompileSucess != true)
       {
         return false;
       }
 
       try
       {
+        Engine.SetTrace(OnTracebackReceived);
+
         LastStartTime = DateTime.Now;
 
-        PythonFunction InitAction = (PythonFunction)GetVariable("RunOneTime");
-
-
-        PythonCalls.Call(codeContext, InitAction);
-
+        PythonFunction RunOneTimeAction = (PythonFunction)GetVariable("RunOneTime");
+        PythonCalls.Call(codeContext, RunOneTimeAction);
 
         LastFinishTime = DateTime.Now;
         return true;

@@ -6,7 +6,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
   xmlns:HandyControl="clr-namespace:HandyControl.Controls;assembly=HandyControl"
   xmlns:IPCC="clr-namespace:PythonConsoleControl;assembly=IronPythonConsoleForm"
-  xmlns:YZXLogicEngine="clr-namespace:YZXLogicEngine"
   xmlns:YZXView="clr-namespace:YZX.PlcSimAdv.View"
   mc:Ignorable="d" 
   d:DesignHeight="1080" 
@@ -32,11 +31,7 @@
           </HandyControl:ScrollViewer>
         </HandyControl:TabItem>
 
-      <HandyControl:TabItem Header="控制台">
-        <HandyControl:ScrollViewer>
-          <YZXLogicEngine:IronPythonDebuger />
-        </HandyControl:ScrollViewer>
-      </HandyControl:TabItem>
+
     </HandyControl:TabControl>
   </Grid>
 </UserControl>

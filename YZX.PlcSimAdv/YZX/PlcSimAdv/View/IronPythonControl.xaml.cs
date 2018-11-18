@@ -1,17 +1,21 @@
 ﻿using System.Windows;
 
 using CommonServiceLocator;
+using HandyControl.Controls;
 using PythonConsoleControl;
 
+using YZX.PlcSimAdv.Task;
 using YZX.PlcSimAdv.ViewModel;
 
 namespace YZX.PlcSimAdv.View
 {
   public partial class IronPythonControl
   {
+    CPUControlViewModel CPU;
     public IronPythonControl()
     {
       InitializeComponent();
+      CPU = ServiceLocator.Current.GetInstance<CPUControlViewModel>();
       Loaded += IronPythonControl_Loaded;
     }
 
@@ -22,12 +26,34 @@ namespace YZX.PlcSimAdv.View
 
     public void AfterConsoleLoaded(PythonConsoleHost host)
     {
-      var cpu = ServiceLocator.Current.GetInstance<CPUControlViewModel>();
-      Console.SetVariable("CPU", cpu);
+      
+      Console.SetVariable("CPU", CPU);
 
-      Console.SetVariable("self", this);
+      Console.SetVariable("VIEW", this);
 
       Console.UpdateVariables();
     }
+
+    public void AddIronPythonDebugger(string name)
+    {
+      Dispatcher.Invoke(() =>
+      {
+        IronPythonTask task;
+        bool getResult = CPU.IronPythonTasks.TryGetValue(name, out task);
+        if (getResult)
+        {
+          TabItem item = new TabItem();
+          IronPythonDebuger debugger = new IronPythonDebuger();
+          debugger.ConnectToTask(task);
+          item.Content = debugger;
+          MainTab.Items.Add(item);
+        }
+      });
+    }
+
+    public void UpdateIronPythonDebuggers()
+    {
+    }
+
   }
 }

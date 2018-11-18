@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media;
-
+using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+
+using System.Reactive;
+using System.Reactive.Subjects;
+using System.Reactive.Linq;
+using System.Reactive.Concurrency;
 
 using HandyControl.Controls;
 
@@ -22,6 +28,8 @@ namespace YZX.PlcSimAdv.ViewModel
       this.PowerOnImage = UtilityFunctions.CreateBitBitmapSourceFromPath("/YZX/images/standby_power-on.png");
       this.PowerOffImage = UtilityFunctions.CreateBitBitmapSourceFromPath("/YZX/images/standby_power-on.png");
     }
+
+    private BehaviorSubject<uint> SyncPointCount = new BehaviorSubject<uint>(0);
 
     #region PowerImage
 
@@ -140,6 +148,14 @@ namespace YZX.PlcSimAdv.ViewModel
     #endregion
 
     #region 方法
+    public static string AdapterName = "USB";
+    public static string Name = "plcsim";
+    public void EnableVirtualSwitch()
+    {
+      ConfigureCommunicationAdapters = new IConfigureAdaptersNETImpl();
+      ConfigureCommunicationAdapters.ResetNetworkSettings();
+      var result = ConfigureCommunicationAdapters.ConfigureVirtualSwitch(AdapterName, true);
+    }
     public void TogglePower()
     {
 
@@ -185,9 +201,6 @@ namespace YZX.PlcSimAdv.ViewModel
             case ERuntimeErrorCode.Timeout:
               break;
           }
-
-
-
         }
       }
       catch (Exception ex)
@@ -201,12 +214,7 @@ namespace YZX.PlcSimAdv.ViewModel
       }
     }
 
-    private void Instance_OnUpdateEventDone(IInstance in_Sender, 
-      ERuntimeErrorCode in_ErrorCode, 
-      DateTime in_SystemTime, 
-      uint in_HardwareIdentifier)
-    {
-    }
+
 
     private void AfterPowerOnOK()
     {
@@ -214,8 +222,6 @@ namespace YZX.PlcSimAdv.ViewModel
       Console.WriteLine(Instance.StoragePath);
 
       Instance.Run();
-
-
     }
 
     public void AfterStartupOK()
@@ -223,10 +229,15 @@ namespace YZX.PlcSimAdv.ViewModel
       InitIronPythonTasks();
     }
 
+    public void a()
+    {
+      ETagListDetails out_TagListDetails;
+      bool out_IsHMIVisibleOnly;
+      Instance.GetTagListStatus(out out_TagListDetails, out out_IsHMIVisibleOnly);
+    }
 
     public void AfterRunOK()
     {
-
     }
 
     public void SetIP(string ip,string mask,string gateway)
@@ -362,13 +373,8 @@ namespace YZX.PlcSimAdv.ViewModel
       long in_TimeSinceAnySyncPoint_ns, 
       uint in_SyncPointCount)
     {
-      if (IronPythonTaskInited)
-      {
-        foreach (var ironPythonTask in IronPythonTasks)
-        {
-          ironPythonTask.RunOneTime();
-        }
-      }
+      Console.WriteLine("");
+      SyncPointCount.OnNext(in_SyncPointCount);
     }
 
     private void Instance_OnProcessEventDone(IInstance in_Sender, 
@@ -378,6 +384,13 @@ namespace YZX.PlcSimAdv.ViewModel
       uint in_Channel, 
       EProcessEventType in_ProcessEventType, 
       uint in_SequenceNumber)
+    {
+    }
+
+    private void Instance_OnUpdateEventDone(IInstance in_Sender,
+      ERuntimeErrorCode in_ErrorCode,
+      DateTime in_SystemTime,
+      uint in_HardwareIdentifier)
     {
     }
 
@@ -570,14 +583,7 @@ namespace YZX.PlcSimAdv.ViewModel
     private static IConfigureAdaptersNET ConfigureCommunicationAdapters;
     public IInstance Instance;
 
-    public static string AdapterName = "USB";
-    public static string Name = "plcsim";
-    public void EnableVirtualSwitch()
-    {
-      ConfigureCommunicationAdapters = new IConfigureAdaptersNETImpl();
-      ConfigureCommunicationAdapters.ResetNetworkSettings();
-      var result = ConfigureCommunicationAdapters.ConfigureVirtualSwitch(AdapterName, true);
-    }
+
 
     public bool HasName(string name)
     {

@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Threading;
-using System.Xml.Serialization;
 
-using Microsoft.Scripting.Hosting;
-using IronPython.Hosting;
-using IronPython.Runtime;
-using IronPython.Runtime.Exceptions;
-using IronPython.Runtime.Operations;
+
+using System.Reactive.Linq;
 
 using YZX.PlcSimAdv.Task;
 
@@ -22,25 +16,40 @@ namespace YZX.PlcSimAdv.ViewModel
       IronPythonTaskInited = false;
       IronPythonTask task;
         task = new IronPythonTask("Task1",@"IronPythonTask\Task1.ipy");
-      IronPythonTasks.Add(task);
+      IronPythonTasks["Task1"] = task;
 
       task = new IronPythonTask("Task1", @"IronPythonTask\Task2.ipy");
-      IronPythonTasks.Add(task);
+      IronPythonTasks["Task2"] = task;
 
+      SyncPointCount.Subscribe(i => {
+        RunPythonTasks();
+      });
 
-      foreach(var itask in IronPythonTasks)
+      foreach (var itask in IronPythonTasks)
       {
-        itask.Init();
+        itask.Value.Init();
       }
 
       IronPythonTaskInited = true;
+    }
+
+    public void RunPythonTasks()
+    {
+      if (IronPythonTaskInited)
+      {
+        foreach (var ironPythonTask in IronPythonTasks.Values)
+        {
+          ironPythonTask.RunOneTime();
+        }
+      }
     }
 
     #endregion
 
     #region 属性
     public bool IronPythonTaskInited = false;
-    public List<IronPythonTask> IronPythonTasks = new List<IronPythonTask>();
+    public Dictionary<string,IronPythonTask> IronPythonTasks = 
+      new Dictionary<string, IronPythonTask>();
     #endregion
   }
 }

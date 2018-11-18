@@ -4,6 +4,8 @@ using System.Windows;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 
+using YZX.PlcSimAdv.View;
+
 namespace YZX.PlcSimAdv.ViewModel
 {
   public class ViewModelLocator
@@ -14,6 +16,7 @@ namespace YZX.PlcSimAdv.ViewModel
 
       SimpleIoc.Default.Register<CPUControlViewModel>();
       SimpleIoc.Default.Register<MainViewModel>();
+      SimpleIoc.Default.Register<CPUControl>();
 
     }
 
@@ -25,6 +28,8 @@ namespace YZX.PlcSimAdv.ViewModel
     public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
     public CPUControlViewModel CPU => ServiceLocator.Current.GetInstance<CPUControlViewModel>();
+
+    public CPUControl CPUControl => ServiceLocator.Current.GetInstance<CPUControl>();
 
     #endregion
   }

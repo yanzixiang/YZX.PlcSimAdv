@@ -15,6 +15,7 @@ using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using PythonConsoleControl;
+
 using YZX.PlcSimAdv.Task;
 
 namespace YZX.PlcSimAdv.View
@@ -22,6 +23,9 @@ namespace YZX.PlcSimAdv.View
   public partial class IronPythonDebuger : UserControl,IronPythonTaskMonitor
   {
     TextEditor avalonEdit;
+
+    public IronPythonTask Task;
+
     public string CurrentShowingFile;
 
     public List<string> AllowedFiles;
@@ -38,6 +42,7 @@ namespace YZX.PlcSimAdv.View
 
       InitializeComponent();
       grid.Children.Add(avalonEdit);
+      Watching = true;
 
       Loaded += IronPythonDebuger_Loaded;
     }
@@ -147,6 +152,8 @@ namespace YZX.PlcSimAdv.View
           //ev.ShowDialog();
         });
       }
+
+      Task.Resume();
     }
 
     private void TracebackCall(IPYTracebackEventArgs e)
@@ -170,12 +177,19 @@ namespace YZX.PlcSimAdv.View
       HighlightLine(lineNo, Brushes.Yellow, Brushes.Black);
     }
 
+    #region IronPythonTaskMonitor
+
     public void ConnectToTask(IronPythonTask task)
     {
+      Task = task;
+      
+      task.TracebackEvent += TracebackEvent;
     }
 
     public void DisconnectFromTask()
     {
+      Task.TracebackEvent -= TracebackEvent;
     }
+    #endregion
   }
 }
