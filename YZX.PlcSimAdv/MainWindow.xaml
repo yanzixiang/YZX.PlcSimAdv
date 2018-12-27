@@ -1,42 +1,290 @@
-﻿<HandyControl:WindowBorderless 
+﻿<Window 
   x:Class="YZX.PlcSimAdv.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:System="clr-namespace:System;assembly=mscorlib"
   xmlns:HandyControl="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+  xmlns:pcp="clr-namespace:AITSW.PCPANEL.WPF;assembly=PCPANEL_WPF_Controls"
+  xmlns:PulseButton="clr-namespace:NMT.Wpf.Controls"
+  xmlns:NlogViewer ="clr-namespace:NlogViewer;assembly=NlogViewer"
   xmlns:WpfPageTransitions="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
-  xmlns:PlcSimView="clr-namespace:PlcSim.Compact.View"
+  xmlns:Fluent="urn:fluent-ribbon"
+  xmlns:TemplateSelectors="clr-namespace:TemplateSelectors"
+  xmlns:Common="clr-namespace:Common"
   xmlns:YZXView="clr-namespace:YZX.PlcSimAdv.View"
   mc:Ignorable="d"
   BorderThickness="1"
   BorderBrush="#262e2f"
-  NonClientAreaBackground="#262e2f"
-  OtherButtonHoverBrush="#888580"
-  Style="{StaticResource CustomWindowStyle}"
+  WindowStyle="None"
   WindowState="Maximized"
   Title="MainWindow" 
   ResizeMode="CanResizeWithGrip"
   Name="MyWindow"
   DataContext="{Binding Main,Source={StaticResource Locator}}"
-  d:DesignHeight="800" 
+  d:DesignHeight="900" 
   d:DesignWidth="1400">
   <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="310" />
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Fluent:Ribbon 
+      x:Name="ribbon"
+      AutomaticStateManagement="True">
+      <Fluent:Ribbon.ContextualGroups>
+        <Fluent:RibbonContextualTabGroup 
+          x:Name="tabGroup1"
+          BorderBrush="{DynamicResource Fluent.Ribbon.Brushes.AccentBaseColorBrush}"
+          Background="{DynamicResource Fluent.Ribbon.Brushes.AccentBaseColorBrush}"
+          Foreground="{DynamicResource BlackBrush}"
+          Header="FIRST"
+          Visibility="Visible" />
+
+        <Fluent:RibbonContextualTabGroup 
+          x:Name="tabGroup2"
+          BorderBrush="#FF9D00"
+          Background="#FF9D00"
+          Foreground="#C45300"
+          Header="SECOND"
+          Visibility="Visible" />
+
+      </Fluent:Ribbon.ContextualGroups>
+
+      <Fluent:Ribbon.StartScreen>
+        <Fluent:StartScreen x:Name="startScreen">
+          <Fluent:StartScreenTabControl>
+            <Fluent:StartScreenTabControl.LeftContent>
+              <StackPanel Orientation="Vertical">
+                <Label Content="Fluent.Ribbon"
+                       FontSize="48"
+                       Foreground="{DynamicResource Fluent.Ribbon.Brushes.IdealForegroundColorBrush}" />
+              </StackPanel>
+            </Fluent:StartScreenTabControl.LeftContent>
+
+            <Fluent:StartScreenTabControl.RightContent>
+              <StackPanel Orientation="Vertical">
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Center">You can close the start screen by either clicking the button below or by pressing ESC</TextBlock>
+                <Fluent:Button HorizontalAlignment="Center"
+                               LargeIcon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Exit.png"
+                               IsDefinitive="True">Close start screen</Fluent:Button>
+              </StackPanel>
+            </Fluent:StartScreenTabControl.RightContent>
+          </Fluent:StartScreenTabControl>
+        </Fluent:StartScreen>
+      </Fluent:Ribbon.StartScreen>
+
+      <Fluent:Ribbon.ToolBarItems>
+        <Fluent:Button 
+          Size="Small"
+          Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Help.png"
+                               >
+          <Fluent:Button.ToolTip>
+            <Fluent:ScreenTip Title="Insert Chart"
+                                          Text="Insert a chart to illustarate and compare data. &#xa;&#xa;Bar, Pie, Line, Area and Surface are same of the available types."
+                                          Image="pack://application:,,,/Fluent.Ribbon.Showcase;component\Images/SampleImageForScreenTip.png"
+                                          HelpTopic="http:\\fluent.codeplex.com"
+                                          DisableReason="Disable reason reason."
+                                          Width="190"
+                                          IsRibbonAligned="True" />
+          </Fluent:Button.ToolTip>
+        </Fluent:Button>
+      </Fluent:Ribbon.ToolBarItems>
+
+      <Fluent:Ribbon.QuickAccessItems>
+        <!--Quick Access toolbar items automatically have ScreenTips of the target -->
+        <!--KeyTips in Quick Access Toolbar names automatically-->
+
+        <!--Use Content or Target Property to set QAT item-->
+        <Fluent:QuickAccessMenuItem IsChecked="true">
+          <Fluent:Button Header="Pink"
+                                   Command="{Binding TestCommand}"
+                                   Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Pink.png" />
+        </Fluent:QuickAccessMenuItem>
+      </Fluent:Ribbon.QuickAccessItems>
+      
+      <Fluent:RibbonTabItem 
+        Header="KeyTips"
+        KeyTip="K"
+        Group="{Binding ElementName=tabGroup1, Mode=OneWay}">
+
+        <Fluent:RibbonGroupBox 
+          Header=""
+          Width="680"
+          IsLauncherVisible="True">
+          <Common:HotPotTitle
+            x:Name="Title"
+            Grid.Row="0" />
+        </Fluent:RibbonGroupBox>
+        
+        <Fluent:RibbonGroupBox
+          Width="100"
+          Header=""
+          VerticalContentAlignment="Top"
+          >
+          <pcp:SelectorSwitch 
+            x:Name="selector" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Stretch" 
+            Width="100" 
+            ValidButtonStates="-1,0,1" 
+            ButtonState="1"
+            VerticalContentAlignment="Top">
+            <pcp:SelectorSwitch.States>
+              <pcp:StatesBitmask 
+                State4Bitmask="-1"
+                Value="{Binding ElementName=selector, Path=ButtonState}" />
+            </pcp:SelectorSwitch.States>
+            <pcp:SelectorSwitch.Colors>
+              <pcp:ControlColors>
+                <pcp:ControlColors.DefaultColoring>
+                  <pcp:ColoringColor Color1="Orange" />
+                </pcp:ControlColors.DefaultColoring>
+                <pcp:ControlColors.State4Coloring>
+                  <pcp:ColoringColor Color1="Green" />
+                </pcp:ControlColors.State4Coloring>
+              </pcp:ControlColors>
+            </pcp:SelectorSwitch.Colors>
+          </pcp:SelectorSwitch>
+        </Fluent:RibbonGroupBox>
+      </Fluent:RibbonTabItem>
+
+      <Fluent:RibbonTabItem 
+        Header="Binding"
+        KeyTip="B"
+        Group="{Binding ElementName=tabGroup2, Mode=OneWay}">
+        <Fluent:RibbonGroupBox>
+          <PulseButton:PulseButton 
+            IsEllipsis="False"
+            Pulses="3" 
+            PulseScale="1.5" 
+            PulseSpeed="0:0:3" 
+            PulseWidth="2" 
+            ButtonBrush="{StaticResource RedButtonBrush}" 
+            ButtonHighlightBrush="{StaticResource ButtonHighlightBrush}" 
+            ButtonPressedBrush="{StaticResource RedButtonPressedBrush}"
+            Foreground="White">
+            <Image Source="/YZX/images/ironpython.png"></Image>
+          </PulseButton:PulseButton>
+        </Fluent:RibbonGroupBox>
+      </Fluent:RibbonTabItem>
+
+      <Fluent:RibbonTabItem 
+        Header="LAYOUT"
+        KeyTip="L"
+        ActiveTabBackground="#FF9D00"
+        Group="{Binding ElementName=tabGroup2, Mode=OneWay}">
+        <Fluent:RibbonGroupBox 
+          Header="LongLongGroup"
+          IsLauncherVisible="False">
+          <DatePicker />
+        </Fluent:RibbonGroupBox>
+        
+        <Fluent:RibbonGroupBox>
+          <Fluent:ToggleButton 
+            Header="Pause"
+            Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/GrowFont.png"
+            SizeDefinition="Middle"
+            GroupName="{Binding Converter={StaticResource UniqueGroupNameConverter}, ConverterParameter=Group1}" />
+          <Separator />
+          <Fluent:ToggleButton 
+            Header="Button long text ggggggg gggg"
+            LargeIcon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Test32.png"
+            Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Test16.png"
+            GroupName="{Binding Converter={StaticResource UniqueGroupNameConverter}, ConverterParameter=Group1}" />
+        </Fluent:RibbonGroupBox>
+      </Fluent:RibbonTabItem>
+
+    </Fluent:Ribbon>
+
+    <Grid 
+      Grid.Row="1">
+    
+      <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="462" />
       <ColumnDefinition MinWidth="300" />
     </Grid.ColumnDefinitions>
-    <Grid Grid.Column="0">
-      <YZXView:CPUControl></YZXView:CPUControl>
+      <Grid Grid.Column="0">
+      <YZXView:CPUControl />
     </Grid>
-    <Grid Grid.Column="1">
+      <Grid Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="100" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      
       <WpfPageTransitions:PageTransition 
-        Name="PageTransitionControl" 
+        x:Name="PageTransitionControl" 
+        Grid.Row="1"
         TransitionType="SlideAndFade" />
+      <GroupBox Grid.Row="3" Header="NlogViewer">
+        <NlogViewer:NlogViewer x:Name="logCtrl" TimeWidth="AUTO" LoggerNameWidth="0" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" />
+      </GroupBox>
       <HandyControl:ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" IsEnableInertia="True" IsPenetrating="True">
         <StackPanel HandyControl:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,10,10,10"/>
 
       </HandyControl:ScrollViewer>
     </Grid>
+    </Grid>
+    
+    <Fluent:StatusBar 
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Bottom"
+      Grid.Row="2">
+      <Fluent:StatusBarItem 
+        Title="Words Width"
+        Value="150"
+        HorizontalAlignment="Left">
+        <TextBlock Text="150 px" />
+      </Fluent:StatusBarItem>
+
+      <Separator HorizontalAlignment="Left" />
+
+      <Fluent:StatusBarItem 
+        Title="Selected Words"
+        Value="15"
+        ToolTip="This is Selected Words"
+        Content="15 words"
+        HorizontalAlignment="Left" />
+
+      <Separator HorizontalAlignment="Left" />
+
+      <Fluent:StatusBarItem 
+        Title="Used memory"
+        HorizontalAlignment="Right"
+        Value="{Binding UsedMemory, StringFormat={}{0:##\,000} KB}" />
+
+      <Separator HorizontalAlignment="Right" />
+
+      <Fluent:StatusBarItem 
+        Title="Zoom"
+        HorizontalAlignment="Right"
+        Value="{Binding Value, ElementName=zoomSlider, StringFormat={}{0:P}}" />
+
+      <Fluent:StatusBarItem 
+        Title="Test (no content, no value)"
+        HorizontalAlignment="Right" />
+
+      <Fluent:StatusBarItem 
+        Title="Zoom Slider"
+        HorizontalAlignment="Right">
+        <Slider 
+          x:Name="zoomSlider"
+          Minimum="0.5"
+          Maximum="2.0"
+          IsDirectionReversed="False"
+          Style="{DynamicResource ZoomSliderStyle}"
+          Value="{Binding Zoom}"
+          IsSnapToTickEnabled="True"
+          TickFrequency="0.1"
+          SmallChange="0.1"
+          LargeChange="0.1"
+          ValueChanged="ZoomSlider_OnValueChanged" />
+      </Fluent:StatusBarItem>
+    </Fluent:StatusBar>
   </Grid>
-</HandyControl:WindowBorderless>
+</Window>

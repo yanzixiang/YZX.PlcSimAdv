@@ -15,7 +15,7 @@
   >
   <Grid Margin="0,0,0,0">
     <Grid.RowDefinitions>
-      <RowDefinition Height="50" />
+      <RowDefinition Height="0" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
       <HandyControl:TabControl
@@ -26,6 +26,7 @@
           <HandyControl:ScrollViewer>
           <IPCC:IronPythonConsoleControl 
             x:Name="Console"
+            x:FieldModifier="public"
             VerticalAlignment="Stretch"
             />
           </HandyControl:ScrollViewer>

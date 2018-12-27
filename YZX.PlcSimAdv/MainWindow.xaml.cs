@@ -12,7 +12,7 @@ using YZX.PlcSimAdv.View;
 
 namespace YZX.PlcSimAdv
 {
-  public partial class MainWindow
+  public partial class MainWindow:Window
   {
     public MainWindow()
     {
@@ -24,8 +24,26 @@ namespace YZX.PlcSimAdv
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
-      IronPythonControl c = new IronPythonControl();
-      PageTransitionControl.ShowPage(c);
+      Title.TitleFontSize = 100;
+      Title.DisplayText("YZX.PlcSimAdv");
+      ShowIronPythonControl();
+    }
+
+    private void ZoomSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+    }
+
+    IronPythonControl IronPythonControl = new IronPythonControl();
+    public void ShowIronPythonControl()
+    {
+      PageTransitionControl.ShowPage(IronPythonControl);
+    }
+
+
+    ControlPanelHost ControlPanelHost = new ControlPanelHost();
+    public void ShowControlPanelHost()
+    {
+      PageTransitionControl.ShowPage(ControlPanelHost);
     }
 
     public readonly string EventLogName = @"YZX.PLCSimAdv";

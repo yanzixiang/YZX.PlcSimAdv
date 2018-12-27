@@ -4,7 +4,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
   xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  xmlns:PulseButton="clr-namespace:NMT.Wpf.Controls"
+  xmlns:converters="clr-namespace:FluentTest.Converters"
   xmlns:viewModel="clr-namespace:YZX.PlcSimAdv.ViewModel"
   d1P1:Ignorable="d" 
   StartupUri="MainWindow.xaml">
@@ -13,6 +14,8 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+
+        <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Generic.xaml" />
 
         <ResourceDictionary>
           <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
@@ -159,6 +162,183 @@
           </Setter.Value>
         </Setter>
       </Style>
+
+
+      <converters:UniqueGroupNameConverter x:Key="UniqueGroupNameConverter" />
+
+      <!--start PulseButtonStyle -->
+      <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+      <ControlTemplate x:Key="EllipseTemplate" TargetType="{x:Type PulseButton:PulseButton}">
+        <Grid x:Name="PART_body" Background="{TemplateBinding Background}">
+          <!-- Pulse Container -->
+          <Grid x:Name="PART_pulse_container"/>
+          <!-- Button -->
+          <Ellipse x:Name="PART_button" Stroke="#60000000" StrokeThickness="2" Fill="{TemplateBinding ButtonBrush}"/>
+          <!-- Focus visual -->
+          <Ellipse x:Name="PART_focus_visual" IsHitTestVisible="False"
+                       Stroke="{TemplateBinding ButtonHighlightBrush}" 
+                       StrokeThickness="2" 
+                       StrokeDashArray="1 2"
+                       Fill="Transparent" Margin="2" 
+                       Visibility="{TemplateBinding IsFocused, Converter={StaticResource BoolToVisibilityConverter}}" />
+          <!-- Reflex -->
+          <Ellipse x:Name="PART_reflex" IsHitTestVisible="False" Visibility="{TemplateBinding IsReflective, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Ellipse.Fill>
+              <RadialGradientBrush RadiusX="2.6" RadiusY="2.05" Center="0.5,-1.5" GradientOrigin="0.5,-1.5">
+                <RadialGradientBrush.GradientStops>
+                  <GradientStop Color="White" Offset="0"/>
+                  <GradientStop Color="#60FFFFFF" Offset="0.4"/>
+                  <GradientStop Color="#30FFFFFF" Offset="0.995"/>
+                  <GradientStop Color="#00FFFFFF" Offset="1"/>
+                </RadialGradientBrush.GradientStops>
+              </RadialGradientBrush>
+            </Ellipse.Fill>
+          </Ellipse>
+          <!-- Content presenter -->
+          <ContentPresenter IsHitTestVisible="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Grid>
+        <!-- ControlTemplate Triggers -->
+        <ControlTemplate.Triggers>
+          <Trigger Property="IsMouseOver" Value="True" SourceName="PART_button">
+            <Setter Property="Fill" TargetName="PART_button" Value="{Binding Path=ButtonHighlightBrush, 
+                    RelativeSource={RelativeSource AncestorType={x:Type PulseButton:PulseButton}}}" />
+            <Setter Property="Stroke" TargetName="PART_focus_visual" Value="Black" />
+          </Trigger>
+          <Trigger Property="IsPressed" Value="True">
+            <Setter Property="Fill" TargetName="PART_button" Value="{Binding Path=ButtonPressedBrush, 
+                    RelativeSource={RelativeSource AncestorType={x:Type PulseButton:PulseButton}}}" />
+          </Trigger>
+          <Trigger Property="IsEnabled" Value="False">
+            <Setter Property="Fill" TargetName="PART_button" Value="{Binding Path=ButtonDisabledBrush, 
+                    RelativeSource={RelativeSource AncestorType={x:Type PulseButton:PulseButton}}}" />
+            <Setter Property="Foreground" Value="DimGray" />
+            <Setter Property="IsPulsing" Value="False" />
+            <Setter Property="Visibility" TargetName="PART_reflex" Value="Hidden" />
+          </Trigger>
+        </ControlTemplate.Triggers>
+      </ControlTemplate>
+
+      <ControlTemplate x:Key="RectangleTemplate" TargetType="{x:Type PulseButton:PulseButton}">
+        <Grid x:Name="PART_body" Background="{TemplateBinding Background}">
+          <!-- Pulse Container -->
+          <Grid x:Name="PART_pulse_container" IsHitTestVisible="False" />
+          <!-- Button -->
+          <Rectangle x:Name="PART_button" 
+                       RadiusX="{TemplateBinding RadiusX}" RadiusY="{TemplateBinding RadiusY}" 
+                       Stroke="#60000000" 
+                       StrokeThickness="2"
+                       Fill="{TemplateBinding ButtonBrush}" />
+          <!-- Focus visual -->
+          <Rectangle x:Name="PART_focus_visual" RadiusX="{TemplateBinding RadiusX}" RadiusY="{TemplateBinding RadiusY}" 
+                       Stroke="{TemplateBinding ButtonHighlightBrush}" 
+                       StrokeThickness="2" IsHitTestVisible="False"
+                       StrokeDashArray="1 2"
+                       Fill="Transparent" Margin="2" 
+                       Visibility="{TemplateBinding IsFocused, Converter={StaticResource BoolToVisibilityConverter}}" />
+          <!-- Reflex -->
+          <Rectangle x:Name="PART_reflex" RadiusX="{TemplateBinding RadiusX}" RadiusY="{TemplateBinding RadiusY}" IsHitTestVisible="False"
+                       Visibility="{TemplateBinding IsReflective, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Rectangle.Fill>
+              <RadialGradientBrush RadiusX="2.6" RadiusY="2.05" Center="0.5,-1.5" GradientOrigin="0.5,-1.5">
+                <RadialGradientBrush.GradientStops>
+                  <GradientStop Color="White" Offset="0"/>
+                  <GradientStop Color="#60FFFFFF" Offset="0.4"/>
+                  <GradientStop Color="#30FFFFFF" Offset="0.995"/>
+                  <GradientStop Color="#00FFFFFF" Offset="1"/>
+                </RadialGradientBrush.GradientStops>
+              </RadialGradientBrush>
+            </Rectangle.Fill>
+          </Rectangle>
+          <!-- Content presenter -->
+          <ContentPresenter IsHitTestVisible="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Grid>
+        <!-- ControlTemplate Triggers -->
+        <ControlTemplate.Triggers>
+          <Trigger Property="IsMouseOver" Value="True" SourceName="PART_button">
+            <Setter Property="Fill" TargetName="PART_button" Value="{Binding Path=ButtonHighlightBrush, 
+                    RelativeSource={RelativeSource AncestorType={x:Type PulseButton:PulseButton}}}" />
+            <Setter Property="Stroke" TargetName="PART_focus_visual" Value="Black" />
+          </Trigger>
+          <Trigger Property="IsPressed" Value="True">
+            <Setter Property="Fill" TargetName="PART_button" Value="{Binding Path=ButtonPressedBrush, 
+                    RelativeSource={RelativeSource AncestorType={x:Type PulseButton:PulseButton}}}" />
+          </Trigger>
+          <Trigger Property="IsEnabled" Value="False">
+            <Setter Property="Fill" TargetName="PART_button" Value="{Binding Path=ButtonDisabledBrush, 
+                    RelativeSource={RelativeSource AncestorType={x:Type PulseButton:PulseButton}}}" />
+            <Setter Property="Foreground" Value="DimGray" />
+            <Setter Property="IsPulsing" Value="False" />
+            <Setter Property="Visibility" TargetName="PART_reflex" Value="Hidden" />
+          </Trigger>
+        </ControlTemplate.Triggers>
+      </ControlTemplate>
+
+      <!-- PulseButton Style -->
+      <Style TargetType="{x:Type PulseButton:PulseButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="IsReflective" Value="True"></Setter>
+        <Setter Property="Template" Value="{StaticResource RectangleTemplate}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Style.Triggers>
+          <Trigger Property="IsEllipsis" Value="True">
+            <Setter Property="Template" Value="{StaticResource EllipseTemplate}" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+
+
+      <DrawingBrush x:Key="Icon1" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+          <DrawingGroup>
+            <DrawingGroup.Children>
+              <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M 61.1667,0C 94.9482,0 122.333,26.639 122.333,59.5C 122.333,92.361 94.9481,119 61.1667,119C 27.3853,119 0,92.361 0,59.5C 0,26.639 27.3852,0 61.1667,0 Z M 60.8348,14.4425C 45.46,14.4425 31.8411,21.7559 23.4543,33.0016C 23.0185,33.5861 22.5967,34.1812 22.1896,34.7863C 31.4634,31.5821 56.868,23.9053 58.5007,35.3348C 60.5007,49.3348 54.5015,88.6678 70.168,78.6678C 85.0615,69.1614 94.5319,46.4005 104.594,45.0362C 98.4562,27.2534 81.1835,14.4425 60.8348,14.4425 Z M 14.6848,59.335C 14.6848,84.1284 35.3469,104.227 60.8348,104.227C 85.6694,104.227 105.922,85.1456 106.944,61.2321C 105.87,61.4615 104.523,62.1007 102.834,63.3348C 94.1675,69.6681 69.1679,110.001 52.5007,90.3348C 39.3704,74.8417 56.167,37.335 37.1669,42.6684C 27.6441,45.3414 20.3824,48.433 15.5075,50.8522C 14.9675,53.5991 14.6848,56.4349 14.6848,59.335 Z "/>
+            </DrawingGroup.Children>
+          </DrawingGroup>
+        </DrawingBrush.Drawing>
+      </DrawingBrush>
+      <!-- Brushes -->
+      <LinearGradientBrush x:Key="RedButtonBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStopCollection>
+          <GradientStop Color="Red" Offset="0"/>
+          <GradientStop Color="#FFCC0000" Offset="1"/>
+        </GradientStopCollection>
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="ButtonHighlightBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStopCollection>
+          <GradientStop  Color="Orange" Offset="0"/>
+          <GradientStop Color="DarkOrange" Offset="1"/>
+        </GradientStopCollection>
+      </LinearGradientBrush>
+      <RadialGradientBrush x:Key="RedButtonPressedBrush">
+        <GradientStopCollection>
+          <GradientStop  Color="DarkRed" Offset="0"/>
+          <GradientStop Color="Red" Offset="1"/>
+        </GradientStopCollection>
+      </RadialGradientBrush>
+      <LinearGradientBrush x:Key="BlueButtonBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStopCollection>
+          <GradientStop  Color="Blue" Offset="0"/>
+          <GradientStop Color="DarkBlue" Offset="1"/>
+        </GradientStopCollection>
+      </LinearGradientBrush>
+      <LinearGradientBrush x:Key="BlueButtonPressedBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStopCollection>
+          <GradientStop  Color="SkyBlue" Offset="0"/>
+          <GradientStop Color="Blue" Offset="1"/>
+        </GradientStopCollection>
+      </LinearGradientBrush>
+      <!-- Easing functions -->
+      <QuadraticEase x:Key="EasingIn" EasingMode="EaseIn" />
+      <QuadraticEase x:Key="EasingOut" EasingMode="EaseOut" />
+      <!--end PulseButtonStyle -->
+
     </ResourceDictionary>
   </Application.Resources>
 </Application>

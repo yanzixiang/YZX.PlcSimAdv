@@ -7,6 +7,8 @@ using PythonConsoleControl;
 using YZX.PlcSimAdv.Task;
 using YZX.PlcSimAdv.ViewModel;
 
+using Extensions;
+
 namespace YZX.PlcSimAdv.View
 {
   public partial class IronPythonControl
@@ -24,6 +26,14 @@ namespace YZX.PlcSimAdv.View
       Console.WithHost(AfterConsoleLoaded);
     }
 
+    public void Clear()
+    {
+      Dispatcher.Invoke(() =>
+      {
+        Console.Pad.Control.Clear();
+      });
+    }
+
     public void AfterConsoleLoaded(PythonConsoleHost host)
     {
       
@@ -31,7 +41,12 @@ namespace YZX.PlcSimAdv.View
 
       Console.SetVariable("VIEW", this);
 
+      var LoadedDlls =   AssemblyExtension.GetLoadedAssemblyWithoutDynamic();
+      Console.SetVariable("LoadedDlls", LoadedDlls);
+
       Console.UpdateVariables();
+
+      Console.Console.ExecuteFile(@"IronPythonTask\Init.ipy");
     }
 
     public void AddIronPythonDebugger(string name)

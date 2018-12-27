@@ -31,6 +31,8 @@ namespace YZX.PlcSimAdv.ViewModel
 
     public CPUControl CPUControl => ServiceLocator.Current.GetInstance<CPUControl>();
 
+    public long UsedMemory => GC.GetTotalMemory(true) / 1014;
+
     #endregion
   }
 }
